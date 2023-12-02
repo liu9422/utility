@@ -1,7 +1,7 @@
 {
   "name": "liu9942/utility",
   "type": "project",
-  "description": "工具箱",
+  "description": "开发工具箱",
   "keywords": [
     "functions"
   ],
@@ -9,10 +9,8 @@
   "require": {
     "php": "^7.3|^8.0",
     "ext-bcmath": "*",
-    "ext-curl": "*",
     "ext-json": "*",
     "ext-libxml": "*",
-    "ext-openssl": "*",
     "ext-simplexml": "*"
   },
   "autoload": {

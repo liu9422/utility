@@ -31,4 +31,24 @@ class Utils
             return substr($string, $mid + 1) . substr($string, $mid, 1) . substr($string, 0, $mid);
         }
     }
+
+    /**
+     * 查找一个字符串在另一个字符串出现的次数和位置
+     * @param string $string
+     * @param string $subString
+     * @return array
+     */
+    public static function findOccurrences(string $string, string $subString): array
+    {
+        $occurrences = array();
+        $position = 0;
+        while(($position = strpos($string, $subString, $position))!==false){
+            $occurrences[] = array(
+                'position' => $position,
+                'count'=>count($occurrences)+1
+            );
+            $position+=strlen($subString);
+        }
+        return $occurrences;
+    }
 }

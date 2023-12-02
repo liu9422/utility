@@ -107,7 +107,7 @@ class Xml
                 break;
             case 'integer':
             case 'double':
-                $this->xml .= strval($data);
+                $this->xml .= $data;
                 break;
             case 'string':
                 $this->xml .= htmlspecialchars($data);
@@ -119,7 +119,7 @@ class Xml
                     if($key !== 0){
                         $this->xml .= sprintf('<%s>', $this->nodeName[$lastNode]);
                     }
-                    if($value !== '' || $value !== []){
+                    if($value !== '' || $value != []){
                         $this->parse($value);
                     }
                     if($key !== $last){
@@ -140,7 +140,6 @@ class Xml
                 break;
             default:
                 throw new BadFunctionCallException(sprintf('The variable type %s cannot be converted to XML', $type));
-                break;
         }
     }
 }

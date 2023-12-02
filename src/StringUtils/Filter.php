@@ -16,7 +16,7 @@ class Filter
      * @param string $string
      * @return string
      */
-    public function filterString(string $string)
+    public function filterString(string $string): string
     {
         $string = preg_replace("/<(\\/?)(script|i?frame|style|html|body|title|link|meta|object|\\?|\\%)([^>]*?)>/isU", '', $string);
         $string = preg_replace("/(<[^>]*)on[a-zA-Z]+\s*=([^>]*>)/isU", '', $string);

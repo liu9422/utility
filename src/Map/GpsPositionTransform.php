@@ -43,7 +43,7 @@ class GpsPositionTransform
      * @param $lon
      * @return array
      */
-    public static function gcj_To_Gps84($lat, $lon)
+    public static function gcj_To_Gps84($lat, $lon): array
     {
         $gps_arr = self::transform($lat, $lon);
         $lontitude = $lon * 2 - $gps_arr["lon"];
@@ -57,7 +57,7 @@ class GpsPositionTransform
      * @param $gg_lon
      * @return array
      */
-    public static function gcj02_To_Bd09($gg_lat,  $gg_lon)
+    public static function gcj02_To_Bd09($gg_lat,  $gg_lon): array
     {
         $x = $gg_lon;
         $y = $gg_lat;
@@ -74,7 +74,7 @@ class GpsPositionTransform
      * @param $bd_lon
      * @return array
      */
-    public static function bd09_To_Gcj02($bd_lat,  $bd_lon)
+    public static function bd09_To_Gcj02($bd_lat,  $bd_lon): array
     {
         $x = $bd_lon - 0.0065;
         $y = $bd_lat - 0.006;
@@ -91,11 +91,10 @@ class GpsPositionTransform
      * @param $bd_lon
      * @return array
      */
-    public static function bd09_To_Gps84( $bd_lat,  $bd_lon)
+    public static function bd09_To_Gps84( $bd_lat,  $bd_lon): array
     {
         $gcj02_arr = self::bd09_To_Gcj02($bd_lat, $bd_lon);
-        $map84_arr = self::gcj_To_Gps84($gcj02_arr["lat"], $gcj02_arr["lon"]);
-        return $map84_arr;
+        return self::gcj_To_Gps84($gcj02_arr["lat"], $gcj02_arr["lon"]);
     }
 
     /**
@@ -103,7 +102,7 @@ class GpsPositionTransform
      * @param $lon
      * @return bool
      */
-    public static function outOfChina($lat,  $lon)
+    public static function outOfChina($lat,  $lon): bool
     {
         if (($lon < 72.004 || $lon > 137.8347) &&  ($lat < 0.8293 || $lat > 55.8271) )
             return true;
@@ -115,7 +114,7 @@ class GpsPositionTransform
      * @param $lon
      * @return array
      */
-    public static function transform($lat,  $lon)
+    public static function transform($lat,  $lon): array
     {
         if (self::outOfChina($lat, $lon)) {
             return array("lat"=>$lat,"lon"=>$lon);
