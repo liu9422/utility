@@ -60,7 +60,7 @@ class Xml
     {
         $this->xml = '';
         $this->nodeName = [];
-        $this->parse(Utils::toArray([$this->rootName => $data]));
+        $this->parse(json_decode(Json::encode([$this->rootName => $data])));
         return $this->header . $this->xml;
     }
 
