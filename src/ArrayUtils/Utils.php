@@ -2,6 +2,7 @@
 namespace Utility\ArrayUtils;
 
 use BadFunctionCallException;
+use Utility\StringUtils\Json;
 
 /**
  * 数组相关工具方法
@@ -13,11 +14,11 @@ class Utils
     /**
      * 将对象转为关联数组
      * @param $object
-     * @return mixed
+     * @return array
      */
-    public static function toArray($object)
+    public static function toArray($object): array
     {
-        return json_decode(json_encode($object), true);
+        return Json::decode(Json::encode($object));
     }
 
     /**

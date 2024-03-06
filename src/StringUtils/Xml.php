@@ -2,6 +2,7 @@
 namespace Utility\StringUtils;
 
 use BadFunctionCallException;
+use Utility\ArrayUtils\Utils;
 
 /**
  * Class Xml
@@ -32,12 +33,12 @@ class Xml
     /**
      * 将一个Xml转换为关联数组
      * @param string $xml
-     * @return mixed
+     * @return array
      */
-    public static function decode(string $xml)
+    public static function decode(string $xml):array
     {
         $obj = @simplexml_load_string($xml,'SimpleXMLElement', LIBXML_NOCDATA);
-        return json_decode(json_encode($obj), true);
+        return Utils::toArray($obj);
     }
 
     /**
@@ -59,7 +60,7 @@ class Xml
     {
         $this->xml = '';
         $this->nodeName = [];
-        $this->parse(json_decode(json_encode([$this->rootName => $data])));
+        $this->parse(Utils::toArray([$this->rootName => $data]));
         return $this->header . $this->xml;
     }
 

@@ -18,9 +18,9 @@ class Json
 
     /**
      * @param string $json
-     * @return mixed
+     * @return array
      */
-    public static function decode(string $json)
+    public static function decode(string $json): array
     {
         return json_decode($json, true);
     }
